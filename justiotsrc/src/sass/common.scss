@@ -1,0 +1,23 @@
+@import 'theme/conf/mixins';
+@import 'theme/conf/colorScheme/mymint';
+@import 'theme/conf/variables';
+
+#dragcontainer:-webkit-full-screen #dragcontainer {
+    display: none;
+    width: 100%;
+  height: 100%;
+  }
+  #dragcontainer:-moz-full-screen #dragcontainer {
+    display: none;
+    width: 100%;
+  height: 100%;
+  }
+  #dragcontainer:-ms-fullscreen #dragcontainer {
+    display: none;
+    
+  }
+  #dragcontainer:fullscreen #dragcontainer {
+    display: none;
+    width: 100%;
+  height: 100%;
+  }

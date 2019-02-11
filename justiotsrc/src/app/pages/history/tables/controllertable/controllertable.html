@@ -1,0 +1,78 @@
+<div
+     ba-panel
+     ba-panel-title="{{controller.title}}"
+     ba-panel-class="with-scroll">
+
+     <form class="row form-inline">
+     <div class="form-group col-sm-3 col-xs-6">
+       <span class="label label-default">日期</span>
+       <p class="input-group">
+       <input type="text" class="form-control"  uib-datepicker-popup="{{range.format}}" datepicker-options="range.options" ng-model="range.dt" is-open="range.dtopened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"/>
+        <span class="input-group-btn">
+         <button type="button" class="btn btn-default form-control" ng-click="dtopen()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+       </p>
+     </div>
+     <div class="form-group col-sm-2 col-xs-6">
+       <span class="label label-default">時間</span>
+       <input bs-on-hide="onHide()" type="text" class="form-control" size="8" ng-model="range.time"  placeholder="從時間" bs-timepicker data-time-type="string" data-time-format="HH:mm:ss" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+     </div>
+         <div class="form-group col-sm-2 col-xs-6">
+           <span class="label label-default">期間</span>
+           <br>
+           <select name="dataperiod" ng-model="range.dataperiod.singleSelect">
+             <option value="0">15分鐘</option>
+             <option value="1">30分鐘</option>
+             <option value="2">1小時</option>
+             <option value="3">12小時</option>
+             <option value="4">1天</option>
+             <option value="5">1周</option>
+         </select>
+         </div>
+
+         <div class="form-group col-sm-5 col-xs-6">
+           <button type="button" class="btn btn-primary btn-with-icon" ng-click="lastpage();"><i class="ion-arrow-left-a"></i>上一頁</button>
+           <button type="button" class="btn btn-default btn-with-icon" ng-disabled="timestamps.length==0" ng-click="nextpage();"><i class="ion-arrow-right-a"></i>下一頁</button>
+           <button type="button" class="btn btn-primary btn-with-icon" ng-click="firstpage();"><i class="icon ion-arrow-up-a"></i>取資料</button>
+           </div>
+     </form>
+
+     <div
+          ba-panel
+          ba-panel-title="表列"
+          ba-panel-class="large-panel with-scroll">
+          <div class="vertical-scroll">
+            <div class="table-responsive">
+          <table border=1 class="table table-striped">
+            <thead>
+              <tr>
+                <th>時間</th>
+                <th ng-repeat="column in controller.tableheads">{{column}}</th>
+              </tr>
+              </thead>
+
+              <tbody>
+                <tr ng-repeat="row in controller.tablerows track by $index">
+                  <td nowrap> {{controller.timelabel[$index]}} </td>
+                 <td ng-repeat="column in controller.tableheads">{{row[column] | number:2}}</td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+     </div>
+
+
+
+
+
+<!--
+     <uib-tabset active="$tabSetStatus.activeTab">
+       <uib-tab heading="{{datapoint.title}}" ng-repeat="datapoint in controller.datapoints">
+         <datapoint-Table datapoint='datapoint'></datapoint-Table>
+       </uib-tab>
+      </uib-tabset>
+    -->
+</div>

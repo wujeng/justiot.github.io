@@ -1,0 +1,15 @@
+<div ng-controller="monitorCtrl">
+<uib-tabset active="$tabSetStatus.activeTab">
+	<uib-tab heading="圖示" select="tabSelected('image')">
+
+    <controller-Board controller='controller'  ng-repeat="controller in controllers"></controller-Board>
+
+	</uib-tab>
+
+  <uib-tab heading="表列" select="tabSelected('list')">
+
+   <controller-List controller='controller'  ng-repeat="controller in controllers"></controller-List>
+
+	</uib-tab>
+ </uib-tabset>
+</div>

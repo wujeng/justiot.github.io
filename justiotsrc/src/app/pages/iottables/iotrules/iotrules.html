@@ -1,0 +1,379 @@
+<div class="col-md-12">
+  <div
+      ba-panel
+      ba-panel-title="控制規則"
+      ba-panel-class="with-scroll">
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="rule.title" id="title" placeholder="規則名稱" ng-disabled="mode=='view'">
+        </div>
+        <!--
+<div class="row">
+          <div class="panel panel-info contextual-example-panel bootstrap-panel">
+            <div class="panel-heading">Panel with panel-info class</div>
+            <div class="panel-body with-scroll">
+
+              <div class="input-demo checkbox-demo row">
+                <div class="col-md-4">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="rule.hasTime" ng-disabled="mode=='view'"><span>時間條件</span>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="rule.isCycle" ng-disabled="mode=='view'"><span>周期性</span>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="rule.isPeriod" ng-disabled="mode=='view'"><span>時段</span>
+                  </label>
+                </div>
+              </div>
+
+              <div
+                  ba-panel
+                  ba-panel-title="設重複時間"
+                  ba-panel-class="with-scroll" ng-if="rule.hasTime && rule.isCycle">
+              <div class="input-demo checkbox-demo row">
+                <div class="col-md-3">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="week[0]" ng-disabled="mode=='view'"><span>星期一</span>
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="week[1]" ng-disabled="mode=='view'"><span>星期二</span>
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="week[2]" ng-disabled="mode=='view'"><span>星期三</span>
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="week[3]" ng-disabled="mode=='view'"><span>星期四</span>
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="week[4]" ng-disabled="mode=='view'"><span>星期五</span>
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="week[5]" ng-disabled="mode=='view'"><span>星期六</span>
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox" ng-model="week[6]" ng-disabled="mode=='view'"><span>星期日</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+</div>
+-->
+        <div
+            ba-panel
+            ba-panel-title="時間條件: {{showRuleTimeCondition(rule)}}"+
+            ba-panel-class="with-scroll">
+            <div class="input-demo checkbox-demo row">
+              <div class="col-md-4">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input type="checkbox" ng-model="rule.hasTime" ng-disabled="mode=='view'"><span>時間條件</span>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setCycle()" type="checkbox" ng-model="rule.isCycle" ng-disabled="mode=='view'"><span>周期性</span>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input type="checkbox" ng-model="rule.isPeriod" ng-disabled="mode=='view'"><span>時段</span>
+                </label>
+              </div>
+            </div>
+<!--
+            <div class="form-group">
+              <input type="text" class="form-control" value="{{showRuleTimeCondition(rule)}}" ng-disabled="true">
+            </div>
+
+-->
+            <div
+                ba-panel
+                ba-panel-title="設重複時間"
+                ba-panel-class="with-scroll" ng-if="rule.hasTime && rule.isCycle">
+            <div class="input-demo checkbox-demo row">
+              <div class="col-md-3">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setWeek()" type="checkbox" ng-model="week[0]" ng-disabled="mode=='view'"><span>星期一</span>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setWeek()" type="checkbox" ng-model="week[1]" ng-disabled="mode=='view'"><span>星期二</span>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setWeek()" type="checkbox" ng-model="week[2]" ng-disabled="mode=='view'"><span>星期三</span>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setWeek()" type="checkbox" ng-model="week[3]" ng-disabled="mode=='view'"><span>星期四</span>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setWeek()" type="checkbox" ng-model="week[4]" ng-disabled="mode=='view'"><span>星期五</span>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setWeek()" type="checkbox" ng-model="week[5]" ng-disabled="mode=='view'"><span>星期六</span>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label class="checkbox-inline custom-checkbox nowrap">
+                  <input ng-click="setWeek()" type="checkbox" ng-model="week[6]" ng-disabled="mode=='view'"><span>星期日</span>
+                </label>
+              </div>
+            </div>
+            </div>
+      <div
+    ba-panel
+    ba-panel-title="時間"
+    ba-panel-class="with-scroll"  ng-if="rule.hasTime">
+
+    <form class="row form-inline">
+      <div class="form-group col-sm-3 col-xs-6">
+        <input ng-if="!rule.isPeriod" bs-on-hide="onHide()" ng-disabled="mode=='view'" type="text" class="form-control" size="8" ng-model="rule.time1"  placeholder="設時間" name="time1" bs-timepicker data-time-type="string" data-time-format="HH:mm" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+        <input ng-if="rule.isPeriod" bs-on-hide="onHide()" ng-disabled="mode=='view'" type="text" class="form-control" size="8" ng-model="rule.time1"  placeholder="從時間" name="time1" bs-timepicker data-time-type="string" data-time-format="HH:mm" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+        <!--
+        <div class="form-group">
+      <label class="control-label"><i class="fa fa-clock-o"></i> Time picker with arrows</label><br>
+      <div class="form-group">
+      <input type="text" class="form-control" size="8" ng-model="time" name="time" bs-timepicker data-time-format="HH:mm" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+      </div>
+      </div>
+        <div class="form-group" ng-class="{'has-error': timepickerForm.time.$invalid}">
+      <label class="control-label"><i class="fa fa-clock-o"></i> Time <small>(as date)</small></label>
+      <input type="text" class="form-control" size="8" ng-model="time" name="time" bs-timepicker>
+      </div>
+
+        <input type="text" ng-model="rule.time1" placeholder="設時間" ng-click="openTimePicker1()" ng-disabled="mode=='view'">
+
+        <div uib-timepicker ng-model="time1" ng-change="changed1()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" ng-disabled="mode=='view'"></div>
+      <pre class="alert alert-info">Time is: {{time1 | date:'shortTime' }}</pre>
+      -->
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      </div>
+      <div class="form-group col-sm-3 col-xs-6" ng-if="!rule.isCycle">
+       <input bs-on-hide="onHide()" type="text" size="15" class="form-control" ng-model="rule.date1" data-autoclose="1"  data-date-type="string" data-date-format="yyyy-MM-dd" bs-datepicker placeholder="設日期" placement="bottom">
+        <!--
+        <input type="text" ng-model="rule.date1" placeholder="設日期" ng-click="openDatePicker1()" ng-disabled="mode=='view'">
+
+        <p class="input-group">
+            <input type="text" class="form-control" ng-if="!rule.isPeriod" placeholder="設日期" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="rule.date1" is-open="opened1" ng-required="true" close-text="Close1" alt-input-formats="altInputFormats" show-button-bar="false" />
+            <input type="text" class="form-control" ng-if="rule.isPeriod" placeholder="從日期" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="rule.date1" is-open="opened1" ng-required="true" close-text="Close1" alt-input-formats="altInputFormats" show-button-bar="false" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+        -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+
+
+      <div  ng-if="rule.hasTime && rule.isPeriod">
+      <div class="form-group col-sm-3 col-xs-6" ng-if="!rule.isCycle">
+        <input bs-on-hide="onHide()" ng-if="!rule.isPeriod" type="text" size="15" class="form-control" ng-model="rule.date2" data-autoclose="1"  data-date-type="string" data-date-format="yyyy-MM-dd" bs-datepicker placeholder="設日期" placement="bottom">
+        <input bs-on-hide="onHide()" ng-if="rule.isPeriod" type="text" size="10" class="form-control" ng-model="rule.date2" data-autoclose="1"  data-date-type="string" data-date-format="yyyy-MM-dd" bs-datepicker placeholder="到日期" placement="bottom">
+        <!--
+        <p class="input-group">
+            <input type="text" class="form-control" ng-if="!rule.isPeriod" placeholder="設日期" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="rule.date2" is-open="opened2" ng-required="true" close-text="Close2" alt-input-formats="altInputFormats" show-button-bar="false" />
+            <input type="text" class="form-control" ng-if="rule.isPeriod" placeholder="到日期" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="rule.date2" is-open="opened2" ng-required="true" close-text="Close2" alt-input-formats="altInputFormats" show-button-bar="false" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      -->
+      </div>
+      <div class="form-group col-sm-3 col-xs-6">
+        <input bs-on-hide="onHide()" ng-disabled="mode=='view'" type="text" class="form-control" size="8" ng-model="rule.time2"  placeholder="設時間" name="time2" bs-timepicker data-time-type="string" data-time-format="HH:mm" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+
+        <!--
+        <div uib-timepicker ng-model="time2" ng-change="changed2()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" ng-disabled="mode=='view'"></div>
+ <pre class="alert alert-info">Time is: {{time2 | date:'shortTime' }}</pre>
+      </div>
+    -->
+    </div>
+      <div class="form-group col-sm-3 col-xs-6" ng-if="rule.hasTime && rule.isPeriod">
+        <div><input type="checkbox" ng-model="rule.reverse" ng-disabled="mode=='view'">該時段之外</div>
+      </div>
+    </form>
+</div>
+
+        </div>
+</div>
+        <div
+            ba-panel
+            ba-panel-title="資料點條件"
+            ba-panel-class="with-scroll">
+
+
+            <div class="add-row-editable-table">
+              <button class="btn btn-primary" ng-click="addIOCondition()">新增資料點條件</button>
+            </div>
+            <div class="horizontal-scroll">
+              <table class="table table-hover" st-table="editableTableData">
+                <thead>
+                <tr class="sortable">
+                  <th st-sort="datapointid" style="width:10%">資料點</th>
+                  <th st-sort="relation" style="width:15%">關係</th>
+                  <th st-sort="value" style="width:12%">數值</th>
+                  <th st-sort="delete" style="width:10%">刪除</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="iocondition in rule.iocondition" class="editable-tr-wrap">
+                  <td class="select-td">
+                      <span editable-select="iocondition.datapointid" e-selectpicker
+                            e-ng-options="s.id as s.title for s in datapoints" blur="cancel" onaftersave="changeIOCondition($index)">
+                        {{ showDatapointTitle(iocondition.datapointid) }}
+                      </span>
+                  </td>
+                  <td class="select-td">
+                      <span editable-select="iocondition.relation" e-selectpicker
+                            e-ng-options="s.relation as s.label for s in relations" blur="cancel" onaftersave="changeIOCondition($index)">
+                        {{ showRelation(iocondition.relation) }}
+                      </span>
+                  </td>
+                  <td><span editable-text="iocondition.value" blur="cancel" onaftersave="changeIOCondition($index)">{{iocondition.value}}</span></td>
+                  <td>
+                    <div>
+                      <button class="btn btn-danger editable-table-button btn-xs" ng-click="cancelIOCondition($index)">刪除</button>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <td colspan="6" class="text-center">
+                    <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+
+
+          </div>
+          <div
+              ba-panel
+              ba-panel-title="處置"
+              ba-panel-class="with-scroll">
+
+              <div
+                  ba-panel
+                  ba-panel-title="驅動資料點"
+                  ba-panel-class="with-scroll">
+                  <div class="add-row-editable-table">
+                    <button class="btn btn-primary" ng-click="addIODrive()">新增驅動資料點</button>
+                  </div>
+                  <div class="horizontal-scroll">
+                    <table class="table table-hover" st-table="editableTableData">
+                      <thead>
+                      <tr class="sortable">
+                        <th st-sort="datapointid" style="width:10%">資料點</th>
+                        <th st-sort="value" style="width:12%">數值</th>
+                        <th st-sort="value" style="width:12%">持續時間(分)</th>
+                        <th st-sort="delete" style="width:10%">刪除</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr ng-repeat="iodrive in rule.iodrive" class="editable-tr-wrap">
+                        <td class="select-td">
+                            <span editable-select="iodrive.datapointid" e-selectpicker
+                                  e-ng-options="s.id as s.title for s in outputarray" blur="cancel" onaftersave="changeIODrive($index)">
+                              {{ showDatapointTitle(iodrive.datapointid) }}
+                            </span>
+                        </td>
+                        <td><span editable-text="iodrive.value" blur="cancel" onaftersave="changeIODrive($index)">{{iodrive.value}}</span></td>
+                        <td><span editable-text="iodrive.duration" blur="cancel" onaftersave="changeIODrive($index)">{{iodrive.duration || '[無]' }}</span></td>
+
+                        <td>
+                          <div>
+                            <button class="btn btn-danger editable-table-button btn-xs" ng-click="cancelIODrive($index)">刪除</button>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                        <td colspan="6" class="text-center">
+                          <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+                        </td>
+                      </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="rule.sms" placeholder="SMS簡訊通知(0973123456,0911123456)">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="rule.email" placeholder="Email郵件通知(mike@gmail.com,tommy@gmail.com)">
+                </div>
+                <div class="form-group">
+                  <span> Notification通知: &nbsp;&nbsp;</span> <ba-switcher switcher-style="primary" switcher-value="rule.notification"></ba-switcher>
+                  <!--
+                  <input type="text" class="form-control" ng-model="rule.notification" placeholder="Notification通知">
+                -->
+                </div>
+             </div>
+
+
+             <div class="form-group">
+                <span class="form-control"  editable-select="rule.userid" e-ng-options="s.uid as s.name for s in users">
+                   {{ showUserName(rule.userid) }}
+                </span>
+             </div>
+
+             <div class="form-group">
+                <span class="form-control"  editable-select="rule.active" e-ng-options="s.id as s.text for s in actives">
+                   {{ showActive(rule) }}
+                </span>
+             </div>
+             <div class="form-group">
+               <button type="button" class="btn btn-primary btn-raised" class="form-control" ng-click="saveRule(rule)">儲存</button>
+               <button type="button" class="btn btn-info" ng-click="saveRule('cancel')">取消</button>
+             </div>
+
+      </form>
+  </div>
+</div>

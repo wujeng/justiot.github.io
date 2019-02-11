@@ -1,0 +1,14 @@
+<!--
+<div class="resize-drag">
+ <img class="resize-drag" ng-src="{{layoutimage.url}}" width="{{layoutimage.width}}" height="{{layoutimage.height}}">
+ <div resize-edges="bottom right">></div>
+</div>
+STYLE="position:relaive; TOP:{{layoutimage.y}}px; LEFT:{{layoutimage.x}}px;"
+-->
+<img class="{{layoutimage.id}}" style="position: absolute;
+display: inline-block;
+padding: 0px;
+margin: 0px 0px;
+box-sizing: border-box;"
+id="{{layoutimage.id}}" ng-src="{{layoutimage.url}}" width="{{layoutimage.width}}" height="{{layoutimage.height}}">
+<span id="{{layoutimage.id+'dptitle'}}" ng-if="common.layoutcommand=='moveImage' && datapoint">{{datapoint.title}}<span>

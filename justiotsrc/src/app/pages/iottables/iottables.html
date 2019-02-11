@@ -1,0 +1,75 @@
+<div class="row" ng-controller="iottablesCtrl">
+  <div class="col-md-12">
+    <div ba-panel ba-panel-title="資料設定">
+<uib-tabset active="$tabSetStatus.activeTab">
+
+  <uib-tab heading="使用者" select="tabSelected('user')" ng-if="isAdmin || isCompanyAdmin" active="iottablesactive.user">
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="使用者表列" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/iottables/widgets/editableUserRowTable.html"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab heading="廠商" select="tabSelected('company')" ng-if="isAdmin" active="iottablesactive.company">
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="廠商表列" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/iottables/widgets/editableCompanyRowTable.html"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+
+  <uib-tab heading="控制器" select="tabSelected('controller')" active="iottablesactive.controller">
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="控制器表列" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/iottables/widgets/editableControllerRowTable.html"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab heading="資料點" select="tabSelected('datapoint')" active="iottablesactive.datapoint">
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="資料點表列" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/iottables/widgets/editableDatapointTable.html"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+
+  <uib-tab heading="攝影機" select="tabSelected('camera')" active="iottablesactive.camera">
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="攝影機表列" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/iottables/widgets/editableCameraRowTable.html"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab heading="GPS記錄器" select="tabSelected('gpslogger')" active="iottablesactive.gpslogger">
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="GPS記錄器表列" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/iottables/widgets/editableGPSLoggerRowTable.html"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab heading="控制規則" select="tabSelected('rule')" active="iottablesactive.rule">
+    <div class="row">
+      <div class="col-md-12">
+        <div ba-panel ba-panel-title="控制規則表列" ba-panel-class="with-scroll">
+          <div include-with-scope="app/pages/iottables/widgets/ruleRowTable.html"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+
+</uib-tabset>
+</div>
+</div>
+</div>

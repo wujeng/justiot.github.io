@@ -1,0 +1,88 @@
+<div class="add-row-editable-table">
+  <button class="btn btn-primary" ng-click="addUser()">新增使用者</button>
+</div>
+<table class="table table-bordered table-hover table-condensed">
+  <tr>
+    <td></td>
+    <td>姓名</td>
+    <td>電子郵件</td>
+    <td>密碼</td>
+    <td>角色</td>
+    <td>擁有公司</td>
+    <td>所屬公司</td>
+    <td>啟用</td>
+    <td>開放內容</td>
+  </tr>
+  <tr ng-repeat="user in common.users" class="editable-row" ng-if="!isCompanyAdmin || common.userid!=user.uid">
+    <td>
+        {{$index}}
+    </td>
+    <td>
+        <span editable-text="user.name" e-name="name" e-form="urowform" e-required>
+          {{ user.name || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="user.email" e-name="email" e-form="urowform" e-required>
+          {{ user.email || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="user.password" e-name="password" e-form="urowform" e-required>
+          {{ user.password }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="user.role" e-name="role" e-form="urowform" e-selectpicker
+              e-ng-options="s.id as s.text for s in roles">
+          {{ showRole(user) }}
+        </span>
+    </td>
+  <!--
+    <td class="select-td">
+        <span editable-select="user.ownedCompanyid" e-name="ownedCompanyid" e-form="urowform" e-selectpicker
+              e-ng-options="s.id as s.text for s in companyarray">
+          {{ showOwnedCompany(user) }}
+        </span>
+    </td>
+  -->
+  <td>
+      <span>
+        {{ showOwnedCompany(user)}}
+      </span>
+  </td>
+    <td class="select-td">
+        <span editable-select="user.companyid" e-name="companyid" e-form="urowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in companyarray">
+          {{ showUserCompany(user) }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="user.active" e-name="active" e-form="urowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in actives">
+          {{ showActive(user) }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="user.public" e-name="public" e-form="urowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in yesno">
+          {{ showPublic(user) }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="urowform" ng-show="urowform.$visible" class="form-buttons form-inline"
+            shown="inserted == user" onaftersave="saveUser($index)">
+        <button type="submit" ng-disabled="urowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+          確定
+        </button>
+        <button type="button" ng-disabled="urowform.$waiting" ng-click="cancel(urowform, 'user', user, $index)" class="btn btn-default editable-table-button btn-xs">
+          取消
+        </button>
+      </form>
+      <div class="buttons" ng-show="!urowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="urowform.$show()">修改</button>
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeUser($index)">刪除</button>
+      </div>
+    </td>
+  </tr>
+</table>

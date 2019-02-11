@@ -1,0 +1,91 @@
+<!--
+<div  ng-repeat="controller in controllers">
+<div
+     ba-panel
+     ba-panel-title="控制器資料"
+     ba-panel-class="with-scroll">
+
+     <div class="col-lg-4 col-md-6" ng-controller="tablesCtrl">
+         <div ba-panel ba-panel-title="Line" ba-panel-class="with-scroll ">
+             <div class="chartjs-canvas-holder-third-row">
+
+                 <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+                         chart-series="series" chart-click="changeData"></canvas>
+
+             </div>
+         </div>
+     </div>
+
+</div>
+</div>
+-->
+<div ng-controller="chartsCtrl">
+<div 
+     ba-panel
+     ba-panel-title="控制器資料"
+     ba-panel-class="with-scroll">
+    <controller-Chart controller="controller" ng-repeat="controller in controllers"></controller-Chart>
+</div>
+</div>
+
+<!--
+<div  ng-controller="chartsCtrl" ng-repeat="controller in controllers">
+  <div
+       ba-panel
+       ba-panel-title="{{controller.title}} 類位訊號圖"
+       ba-panel-class="with-scroll">
+    <div id="achart0" class="admin-chart"></div>
+  </div>
+  <div
+       ba-panel
+       ba-panel-title="{{controller.title}} 數位訊號圖"
+       ba-panel-class="with-scroll">
+    <div id="dchart0" class="admin-chart"></div>
+  </div>
+
+
+<div id="achart1" class="admin-chart"></div>
+<div id="dchart1" class="admin-chart"></div>
+<div id="achart2" class="admin-chart"></div>
+<div id="dchart2" class="admin-chart"></div>
+<div id="achart3" class="admin-chart"></div>
+<div id="dchart3" class="admin-chart"></div>
+<div id="achart4" class="admin-chart"></div>
+<div id="dchart4" class="admin-chart"></div>
+<div id="achart5" class="admin-chart"></div>
+<div id="dchart5" class="admin-chart"></div>
+<div id="achart6" class="admin-chart"></div>
+<div id="dchart6" class="admin-chart"></div>
+-->
+
+</div>
+<!--
+<div  ng-controller="chartsCtrl">
+
+<controller-Chart controller="controller" ng-repeat="controller in controllers"></controller-Chart>
+
+<div
+     ba-panel
+     ba-panel-title="控制器資料"
+     ba-panel-class="with-scroll">
+     <div id="achart0" class="admin-chart"></div>
+     <div id="dchart0" class="admin-chart"></div>
+     <div id="achart1" class="admin-chart"></div>
+     <div id="dchart1" class="admin-chart"></div>
+     <div id="achart2" class="admin-chart"></div>
+     <div id="dchart2" class="admin-chart"></div>
+     <div id="achart3" class="admin-chart"></div>
+     <div id="dchart3" class="admin-chart"></div>
+     <div id="achart4" class="admin-chart"></div>
+     <div id="dchart4" class="admin-chart"></div>
+     <div id="achart5" class="admin-chart"></div>
+     <div id="dchart5" class="admin-chart"></div>
+     <div id="achart6" class="admin-chart"></div>
+     <div id="dchart6" class="admin-chart"></div>
+     <div id="achart7" class="admin-chart"></div>
+     <div id="dchart7" class="admin-chart"></div>
+</div>
+
+
+</div>
+-->

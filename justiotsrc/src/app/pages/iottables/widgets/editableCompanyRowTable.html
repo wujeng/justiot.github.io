@@ -1,0 +1,60 @@
+<div class="add-row-editable-table">
+  <button class="btn btn-primary" ng-click="addCompany()">新增廠商</button>
+</div>
+<table class="table table-bordered table-hover table-condensed">
+  <tr>
+    <td></td>
+    <td>名稱</td>
+    <td>說明</td>
+    <td>管理者</td>
+    <td>網址</td>
+    <td>啟用</td>
+  </tr>
+  <tr ng-repeat="company in common.companys" class="editable-row">
+    <td>
+        {{$index}}
+    </td>
+    <td>
+        <span editable-text="company.title" e-name="title" e-form="cmrowform" e-required>
+          {{ company.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="company.description" e-name="description" e-form="cmrowform" e-required>
+          {{ company.description || '[無]' }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="company.adminuid" e-name="adminuid" e-form="cmrowform" e-selectpicker
+              e-ng-options="s.id as s.text for s in companyadminarray">
+          {{ showCompanyAdmin(company) }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="company.url" e-name="url" e-form="cmrowform" e-required>
+          {{ company.url || '[無]' }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="company.active" e-name="active" e-form="cmrowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in actives">
+          {{ showActive(company) }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="cmrowform" ng-show="cmrowform.$visible" class="form-buttons form-inline"
+            shown="inserted == company" onaftersave="saveCompany($index)">
+        <button type="submit" ng-disabled="cmrowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+          確定
+        </button>
+        <button type="button" ng-disabled="cmrowform.$waiting" ng-click="cancel(cmrowform, 'company', company, $index)" class="btn btn-default editable-table-button btn-xs">
+          取消
+        </button>
+      </form>
+      <div class="buttons" ng-show="!cmrowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="cmrowform.$show()">修改</button>
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeCompany($index)">刪除</button>
+      </div>
+    </td>
+  </tr>
+</table>

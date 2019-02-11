@@ -1,0 +1,144 @@
+
+  <div class="{{layoutlabel.id}}" style="
+  position:absolute;
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
+  ">
+  <div class="panel panel-primary panel-horizontal" ng-if="layoutlabel.type==1 && layoutlabel.color==0">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-success panel-horizontal" ng-if="layoutlabel.type==1 && layoutlabel.color==1">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-info panel-horizontal" ng-if="layoutlabel.type==1 && layoutlabel.color==2">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-warning panel-horizontal" ng-if="layoutlabel.type==1 && layoutlabel.color==3">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-danger panel-horizontal" ng-if="layoutlabel.type==1 && layoutlabel.color==4">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-default panel-horizontal" ng-if="layoutlabel.type==1 && layoutlabel.color==5">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-primary" ng-if="layoutlabel.type==0 && layoutlabel.color==0">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-success" ng-if="layoutlabel.type==0 && layoutlabel.color==1">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-info" ng-if="layoutlabel.type==0 && layoutlabel.color==2">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-warning" ng-if="layoutlabel.type==0 && layoutlabel.color==3">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-danger" ng-if="layoutlabel.type==0 && layoutlabel.color==4">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  <div class="panel panel-default" ng-if="layoutlabel.type==0 && layoutlabel.color==5">
+    <div class="panel-heading" style="height: 30px; padding-top: 5px;"><font color=blue>{{ layoutlabel.datapoint.title }}</font></div>
+    <div class="panel-body" style="height: 30px; padding-top: 3px;">
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1" ng-model="layoutlabel.datapoint.value"><font color=red>ON</font></div>
+      <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0" ng-model="layoutlabel.datapoint.value"><font color=blue>OFF</font></div>
+      <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ layoutlabel.datapoint.value | number:2 }}</div>
+    </div>
+  </div>
+
+  </div>
+
+<!--
+<div class="{{layoutlabel.id}}" style="
+display: inline-block;
+background-color: white;
+padding: 4px;
+margin: 0px;
+border: medium outset #0000FF;
+box-sizing: border-box;
+"  width="{{layoutlabel.width}}" height="{{layoutlabel.height}}">
+    <div>{{ ::layoutlabel.datapoint.title }}</div>
+    <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1"><font color=red>ON</font></div>
+    <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0"><font color=blue>OFF</font></div>
+    <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ ::layoutlabel.datapoint.value }}</div>
+</div>
+
+
+border: medium outset #0000FF;
+<div ba-panel class="col-md-2"
+    id="{{layoutlabel.id+'move'}}"
+    ng-style="{'position': 'absolute', 'TOP': layoutlabel.y+'px', 'LEFT': layoutlabel.x+'px'}"
+    STYLE="position:absolute; TOP:{{layoutlabel.y}}px; LEFT:{{layoutlabel.x}}px;">
+    <div>{{ ::layoutlabel.datapoint.title }}</div>
+    <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==1"><font color=red>ON</font></div>
+    <div ng-if="(layoutlabel.datapoint.dptype==0 || layoutlabel.datapoint.dptype==1) && layoutlabel.datapoint.value==0"><font color=blue>OFF</font></div>
+    <div ng-if="layoutlabel.datapoint.dptype==2 || layoutlabel.datapoint.dptype==3">{{ ::layoutlabel.datapoint.value }}</div>
+</div>
+-->

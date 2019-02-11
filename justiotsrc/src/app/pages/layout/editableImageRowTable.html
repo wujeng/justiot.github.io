@@ -1,0 +1,90 @@
+<table class="table table-bordered table-hover table-condensed" ng-if="!canEdit()">
+  <tr>
+    <td></td>
+    <td>名稱</td>
+    <td>資料點</td>
+    <td>關係</td>
+    <td>數值</td>
+  </tr>
+  <tr ng-repeat="image in layout.layoutimages" class="editable-row">
+    <td>
+        <img ng-src="{{image.url}}" height="50">
+    </td>
+    <td>
+        <span>
+          {{ image.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showDatapointTitle(image.datapointid) || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showRelation(image.relation) }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{image.value}}
+        </span>
+    </td>
+  </tr>
+</table>
+<!--
+<div class="add-row-editable-table">
+  <button class="btn btn-primary" ng-click="addCamera()" ng-if="canEdit()">新增攝影機</button>
+</div>
+-->
+<table class="table table-bordered table-hover table-condensed" ng-if="canEdit()">
+  <tr>
+    <td></td>
+    <td>名稱</td>
+    <td>資料點</td>
+    <td>關係</td>
+    <td>數值</td>
+  </tr>
+  <tr ng-repeat="image in layout.layoutimages" class="editable-row">
+    <td>
+        <img ng-src="{{image.url}}" height="50">
+    </td>
+    <td>
+        <span editable-text="image.title" e-name="title" e-form="imrowform" e-required>
+          {{ image.title || '[無]' }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="image.datapointid" e-name="datapointid" e-form="imrowform" e-selectpicker
+              e-ng-options="s.id as s.title for s in dps">
+          {{ showDatapointTitle(image.datapointid) }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="image.relation" e-name="relation" e-form="imrowform" e-selectpicker
+              e-ng-options="s.relation as s.label for s in relations">
+          {{ showRelation(image.relation) }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="image.value" e-name="value" e-form="imrowform" e-required>
+          {{ image.value || '[無]' }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="imrowform" ng-show="imrowform.$visible" class="form-buttons form-inline"
+            shown="inserted == image" onaftersave="saveImage($index)">
+        <button type="submit" ng-disabled="imrowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+          確定
+        </button>
+        <button type="button" ng-disabled="imrowform.$waiting" ng-click="cancel(imrowform)" class="btn btn-default editable-table-button btn-xs">
+          取消
+        </button>
+      </form>
+      <div class="buttons" ng-show="!imrowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="imrowform.$show()">修改</button>
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeImage($index)">刪除</button>
+      </div>
+    </td>
+  </tr>
+</table>

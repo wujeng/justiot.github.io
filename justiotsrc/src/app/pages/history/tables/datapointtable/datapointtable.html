@@ -1,0 +1,21 @@
+<div
+     ba-panel
+     ba-panel-title="{{datapoint.title}}"
+     ba-panel-class="large-panel with-scroll">
+     <div class="vertical-scroll">
+     <table class="table table-striped">
+       <thead>
+       <tr>
+         <th>時間</th>
+         <th>數值</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr ng-repeat="data in datapoint.datas | reverse">
+         <td>{{data.createdAt | date:'yyyy-M-dd H:mm'}}</td>
+         <td>{{data.value}}</td>
+       </tr>
+       </tbody>
+     </table>
+   </div>
+</div>

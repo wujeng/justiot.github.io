@@ -1,0 +1,144 @@
+<ul class="al-msg-center clearfix">
+  <!--
+<li>
+  <a ng-click="fullscreen()">
+    <i class="fa fa-full-screen"></i>全螢幕
+  </a>
+</li>
+-->
+<li uib-dropdown ng-if="common.state=='layout' && common.user">
+  <a href uib-dropdown-toggle>
+   圖控
+    <div class="notification-ring"></div>
+  </a>
+
+  <div uib-dropdown-menu class="top-dropdown-menu">
+    <i class="dropdown-arr"></i>
+
+    <table class="table table-hover">
+      <tbody>
+        <tr ng-if="!isGuest && ((common.isOwner&&!common.isCustomer) || common.isAdmin || common.isTargetAdmin)"><td align=center><i class="icon ion-checkmark-circled" ng-if="common.layoutcommand=='addLayout'"></i><i class="icon ion-android-add-circle"></i></td><td><a ng-click="setLayoutCommand('addLayout')">增修圖控頁</a></td></tr>
+        <tr ng-if="!isGuest && ((common.isOwner&&!common.isCustomer) || common.isAdmin || common.isTargetAdmin)"><td align=center><i class="icon ion-checkmark-circled" ng-if="common.layoutcommand=='uploadImage'"></i><i class="icon ion-ios-cloud-upload-outline"></i></td><td><div ng-click="setLayoutCommand('uploadImage')">設置上傳圖示</div></td></tr>
+        <tr ng-if="!isGuest && ((common.isOwner&&!common.isCustomer) || common.isAdmin || common.isTargetAdmin)"><td align=center><i class="icon ion-checkmark-circled" ng-if="common.layoutcommand=='moveImage'"></i><i class="icon ion-arrow-move"></i></td><td><div ng-click="setLayoutCommand('moveImage')">移動縮放配置圖示</div></td></tr>
+        <!--
+        <tr><td align=center><i class="icon ion-android-laptop"></i></td><td><div ng-click="setLayoutCommand('none')">顯示圖控</div></td></tr>
+      -->
+<tr><td align=center></td><td><div>-------點選下列圖控頁-------</div></td></tr>
+<tr ng-repeat="layout in common.layouts"><td align=center></td><td><div ng-click="setLayoutindex($index)">{{layout.title}}</div></td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</li>
+
+
+  <li uib-dropdown ng-if="common.isAdmin && common.companys.length>0">
+    <a href uib-dropdown-toggle ng-if="common.company!=null">
+     {{common.company.title}}
+      <div class="notification-ring"></div>
+    </a>
+    <a href uib-dropdown-toggle ng-if="common.company==null">
+     一般使用者
+      <div class="notification-ring"></div>
+    </a>
+    <div uib-dropdown-menu class="top-dropdown-menu">
+      <i class="dropdown-arr"></i>
+
+      <table class="table table-hover">
+        <tbody>
+        <tr ng-repeat="company in common.companys" ng-click="setCompany(company.id)">
+          <td align=center> {{company.title}}</td>
+          <td align=center>{{company.admin.name}}</td>
+        </tr>
+        <tr ng-click="setCompany('players')">
+          <td align=center> 一般使用者</td>
+          <td align=center></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </li>
+  <li ng-if="common.isCompanyAdmin || common.isCustomer">
+  <font color=white>  {{common.company.title}} </font>
+  </li>
+  <li uib-dropdown ng-if="!common.isCustomer && common.users.length>0">
+    <a href uib-dropdown-toggle>
+     {{common.targetUser.name}}
+     <div ng-if="!common.targetUser">選使用者</div>
+      <div class="notification-ring"></div>
+    </a>
+
+    <div uib-dropdown-menu class="top-dropdown-menu">
+          <i class="dropdown-arr"></i>
+          <!--
+          <div class="header clearfix">
+            <strong>Messages</strong>
+            <a href>Mark All as Read</a>
+            <a href>Settings</a>
+          </div>
+        -->
+        <table class="table table-hover">
+          <div class="msg-list">
+            <a href class="clearfix" ng-repeat="user in common.users" ng-click="setUser(user.uid)">
+              <!--
+              <div class="msg-area">
+                <div>{{user.name}}</div>  <div>{{user.description}}</div><div>{{user.email}}</div>
+              </div>
+              <div>{{user.name}}{{user.description}}{{user.email}}</div>
+              <div class="msg-area">
+                <div>{{user.name}}</div>
+              </div>
+              <div class="msg-area">
+                <div>{{user.description}}</div>
+              </div>
+-->
+<div class="row">
+  <div class="col-md-3">{{user.name}}</div>
+  <div class="col-md-3">{{user.description}}</div>
+  <div>{{user.email}}</div>
+</div>
+
+            </a>
+
+          </div>
+        </table>
+        </div>
+<!--
+    <div uib-dropdown-menu class="top-dropdown-menu">
+      <i class="dropdown-arr"></i>
+
+        <table class="table table-hover">
+          <tbody>
+          <tr ng-repeat="user in users" ng-click="setUser(user.uid)">
+            <td align="left" class="col-md-1"> {{user.name}}</td>
+            <td class="col-md-1">{{user.description}}</td>
+            <td >{{user.email}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    -->
+    </div>
+  </li>
+  <li uib-dropdown ng-if="!common.isGuest && common.user">
+    <a href uib-dropdown-toggle>
+     {{common.user.name}}
+      <div class="notification-ring"></div>
+    </a>
+
+    <div uib-dropdown-menu class="top-dropdown-menu">
+      <i class="dropdown-arr"></i>
+
+      <table class="table table-hover">
+        <tbody>
+          <tr ng-if="!common.isCustomer"><td align=center><i class="fa fa-user"></i></td><td><a ng-click="profile()">修改個人資料</a></td></tr>
+          <tr><td align=center><i class="fa fa-power-off"></i></td><td><div ng-click="logout()">登出</div></td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </li>
+  <li ng-if="common.isGuest || !common.user">
+     <a href='#/login'>登入<i class="fa fa-sign-in"></i></a>
+  </li>
+</ul>

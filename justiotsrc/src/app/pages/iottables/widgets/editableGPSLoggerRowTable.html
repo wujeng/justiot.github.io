@@ -1,0 +1,89 @@
+<div class="add-row-editable-table">
+  <button class="btn btn-primary" ng-click="addGPSLogger()" ng-if="canEdit()">新增GPS記錄器</button>
+</div>
+<table class="table table-bordered table-hover table-condensed" ng-if="!canEdit()">
+  <tr>
+    <td></td>
+    <td>名稱</td>
+    <td>說明</td>
+    <td>使用者</td>
+    <td>啟用</td>
+  </tr>
+  <tr ng-repeat="gpslogger in common.gpsloggers" class="editable-row">
+    <td>
+        {{$index}}
+    </td>
+    <td>
+        <span>
+          {{ gpslogger.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ gpslogger.description || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showGPSLoggerUser(gpslogger) }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showActive(gpslogger) }}
+        </span>
+    </td>
+  </tr>
+</table>
+
+<table class="table table-bordered table-hover table-condensed" ng-if="canEdit()">
+  <tr>
+    <td></td>
+    <td>名稱</td>
+    <td>說明</td>
+    <td>使用者</td>
+    <td>啟用</td>
+  </tr>
+  <tr ng-repeat="gpslogger in common.gpsloggers" class="editable-row">
+    <td>
+        {{$index}}
+    </td>
+    <td>
+        <span editable-text="gpslogger.title" e-name="title" e-form="gpsrowform" e-required>
+          {{ gpslogger.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="gpslogger.description" e-name="description" e-form="gpsrowform" e-required>
+          {{ gpslogger.description || '[無]' }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="gpslogger.userid" e-name="userid" e-form="gpsrowform" e-selectpicker
+              e-ng-options="s.id as s.text for s in userarray">
+          {{ showGPSLoggerUser(gpslogger) }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="gpslogger.active" e-name="active" e-form="gpsrowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in actives">
+          {{ showActive(gpslogger) }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="gpsrowform" ng-show="gpsrowform.$visible" class="form-buttons form-inline"
+            shown="inserted == gpslogger" onaftersave="saveGPSLogger($index)">
+        <button type="submit" ng-disabled="gpsrowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+          確定
+        </button>
+        <button type="button" ng-disabled="gpsrowform.$waiting" ng-click="cancel(gpsrowform, 'gpslogger', gpslogger, $index)" class="btn btn-default editable-table-button btn-xs">
+          取消
+        </button>
+      </form>
+      <div class="buttons" ng-show="!gpsrowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="gpsrowform.$show()">修改</button>
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeGPSLogger($index)">刪除</button>
+      </div>
+    </td>
+  </tr>
+</table>

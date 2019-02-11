@@ -1,0 +1,100 @@
+<table class="table table-bordered table-hover table-condensed" ng-if="!canEdit()">
+  <tr>
+    <td></td>
+    <td>名稱</td>
+    <td>說明</td>
+    <td>使用者</td>
+    <td>網址</td>
+    <td>啟用</td>
+  </tr>
+  <tr ng-repeat="camera in common.cameras" class="editable-row">
+    <td>
+        {{$index}}
+    </td>
+    <td>
+        <span>
+          {{ camera.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ camera.description || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showCameraUser(camera) }}
+        </span>
+    </td>
+    <td>
+        <span>
+          <a href="{{ camera.url || '[無]' }}" target="_blank">監看</a>
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showActive(camera) }}
+        </span>
+    </td>
+  </tr>
+</table>
+<div class="add-row-editable-table">
+  <button class="btn btn-primary" ng-click="addCamera()" ng-if="canEdit()">新增攝影機</button>
+</div>
+<table class="table table-bordered table-hover table-condensed" ng-if="canEdit()">
+  <tr>
+    <td></td>
+    <td>名稱</td>
+    <td>說明</td>
+    <td>使用者</td>
+    <td>網址</td>
+    <td>啟用</td>
+  </tr>
+  <tr ng-repeat="camera in common.cameras" class="editable-row">
+    <td>
+        {{$index}}
+    </td>
+    <td>
+        <span editable-text="camera.title" e-name="title" e-form="carowform" e-required>
+          {{ camera.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="camera.description" e-name="description" e-form="carowform" e-required>
+          {{ camera.description || '[無]' }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="camera.userid" e-name="userid" e-form="carowform" e-selectpicker
+              e-ng-options="s.id as s.text for s in userarray">
+          {{ showCameraUser(camera) }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="camera.url" e-name="url" e-form="carowform" e-required>
+          {{ camera.url || '[無]' }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="camera.active" e-name="active" e-form="carowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in actives">
+          {{ showActive(camera) }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="carowform" ng-show="carowform.$visible" class="form-buttons form-inline"
+            shown="inserted == camera" onaftersave="saveCamera($index)">
+        <button type="submit" ng-disabled="carowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+          確定
+        </button>
+        <button type="button" ng-disabled="carowform.$waiting" ng-click="cancel(carowform, 'camera', camera, $index)" class="btn btn-default editable-table-button btn-xs">
+          取消
+        </button>
+      </form>
+      <div class="buttons" ng-show="!carowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="carowform.$show()">修改</button>
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeCamera($index)">刪除</button>
+      </div>
+    </td>
+  </tr>
+</table>

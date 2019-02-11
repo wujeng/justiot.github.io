@@ -1,0 +1,32 @@
+
+  <div
+       ba-panel
+       ba-panel-title="{{controller.title}} <span ng-if='controller.offline'><img src='app/pages/monitor/controllerboard/images/redflash.gif'> <font color='red'>控制器離線</font></span>"
+       ba-panel-class="with-scroll">
+       <div
+            ba-panel
+            ba-panel-title="數位"
+            ba-panel-class="with-scroll" ng-if="hasDigital()">
+            <table><tr>
+<td ng-repeat="datapoint in controller.datapoints">
+<digital-Gauge datapoint='datapoint'></digital-Gauge>
+</td>
+            </tr></table>
+
+     </div>
+     <div
+          ba-panel
+          ba-panel-title="類比"
+          ba-panel-class="with-scroll" ng-if="hasAnalog()">
+     <analog-Gauge datapoint='datapoint' ng-repeat="datapoint in controller.datapoints"></analog-Gauge>
+   </div>
+   <div
+        ba-panel
+        ba-panel-title="遠端遙控"
+        ba-panel-class="with-scroll" ng-if="hasOutput()">
+   <div class="row">
+   <remote-Drive datapoint='datapoint' ng-repeat="datapoint in controller.datapoints"></remote-Drive>
+   </div>
+   </div>
+
+  </div>

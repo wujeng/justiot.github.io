@@ -1,0 +1,46 @@
+
+  <div
+       ba-panel
+       ba-panel-title="{{controller.title}}"
+       ba-panel-class="with-scroll">
+       <div
+            ba-panel
+            ba-panel-title="數位"
+            ba-panel-class="with-scroll" ng-if="hasDigital()">
+
+            <div class="col-md-4" ng-repeat="datapoint in datapoints">
+              <div ng-if="datapoint.dptype==0 || datapoint.dptype==1 ">
+                <table><tr>
+                <th><font color=blue><b>{{datapoint.title}}</b></font></th><td>&nbsp;&nbsp;</td>
+                <td ng-if="datapoint.value==0">OFF</td>
+                <td ng-if="datapoint.value==1"><font color=red>ON</font></td>
+              </tr></table>
+              </div>
+            </div>
+
+     </div>
+     <div
+          ba-panel
+          ba-panel-title="類比"
+          ba-panel-class="with-scroll" ng-if="hasAnalog()">
+
+          <div class="col-md-3" ng-repeat="datapoint in datapoints">
+            <div ng-if="datapoint.dptype==2 || datapoint.dptype==3">
+              <table><tr>
+              <th><font color=blue><b>{{datapoint.title}}</b></font></th><td>&nbsp;&nbsp;</td>
+              <td>{{datapoint.value | number:2}}</td>
+            </tr></table>
+            </div>
+          </div>
+
+   </div>
+   <div
+        ba-panel
+        ba-panel-title="遠端遙控"
+        ba-panel-class="with-scroll" ng-if="hasOutput()">
+   <div class="row">
+   <remote-Drive datapoint='datapoint' ng-repeat="datapoint in controller.datapoints"></remote-Drive>
+   </div>
+   </div>
+
+  </div>

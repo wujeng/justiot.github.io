@@ -1,0 +1,92 @@
+<table class="table table-bordered table-hover table-condensed" ng-if="!canEdit()">
+  <tr>
+    <td>資料點</td>
+    <td>顏色</td>
+    <td>類型</td>
+    <td>大小</td>
+    <td>小數點位數</td>
+  </tr>
+  <tr ng-repeat="label in layout.layoutlabels" class="editable-row">
+    <td>
+        <span>
+          {{ showDatapointTitle(label.datapointid)}}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showColor(label.color)}}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showType(label.type) }}
+        </span>
+    </td>
+    <td>
+        <span ng-if="label.type==3">
+          {{ label.size }}
+        </span>
+    </td>
+    <td>
+        <span ng-if="label.type==3">
+          {{ label.dotnumber }}
+        </span>
+    </td>
+  </tr>
+</table>
+
+<table class="table table-bordered table-hover table-condensed" ng-if="canEdit()">
+  <tr>
+    <td>資料點</td>
+    <td>顏色</td>
+    <td>類型</td>
+    <td>大小</td>
+    <td>小數點位數</td>
+  </tr>
+  <tr ng-repeat="layoutlabel in layout.layoutlabels" class="editable-row">
+    <td>
+        <span>
+          {{ showDatapointTitle(layoutlabel.datapointid)}}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="layoutlabel.color" e-name="color" e-form="labelrowform" e-selectpicker
+              e-ng-options="s.id as s.label for s in colors">
+          {{ showColor(layoutlabel.color)}}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="layoutlabel.type" e-name="type" e-form="labelrowform" e-selectpicker
+              e-ng-options="s.id as s.label for s in types">
+          {{ showType(layoutlabel.type) }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="layoutlabel.size" e-name="size" e-form="labelrowform" e-required ng-if="layoutlabel.type==3">
+          {{ layoutlabel.size || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="layoutlabel.dotnumber" e-name="dotnumber" e-form="labelrowform" e-required ng-if="layoutlabel.type==3">
+          {{ layoutlabel.dotnumber || '[無]' }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="labelrowform" ng-show="labelrowform.$visible" class="form-buttons form-inline"
+            shown="inserted == label" onaftersave="saveLabel($index)">
+        <button type="submit" ng-disabled="labelrowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+          確定
+        </button>
+        <button type="button" ng-disabled="labelrowform.$waiting" ng-click="cancel(labelrowform)" class="btn btn-default editable-table-button btn-xs">
+          取消
+        </button>
+      </form>
+      <div class="buttons" ng-show="!labelrowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="labelrowform.$show()">修改</button>
+  <!--
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeImage($index)">刪除</button>
+  -->
+      </div>
+    </td>
+  </tr>
+</table>

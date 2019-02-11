@@ -1,0 +1,126 @@
+<div
+     ba-panel
+     ba-panel-title="{{controller.title}}"
+     ba-panel-class="with-scroll">
+
+     <form class="row form-inline">
+     <div class="form-group col-sm-3 col-xs-6">
+       <span class="label label-default">日期</span>
+       <p class="input-group">
+       <input type="text" class="form-control"  uib-datepicker-popup="{{range.format}}" datepicker-options="range.options" ng-model="range.dt" is-open="range.dtopened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"/>
+        <span class="input-group-btn">
+         <button type="button" class="btn btn-default form-control" ng-click="dtopen()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+       </p>
+     </div>
+     <div class="form-group col-sm-2 col-xs-6">
+       <span class="label label-default">時間</span>
+       <input bs-on-hide="onHide()" type="text" class="form-control" size="8" ng-model="range.time"  placeholder="從時間" bs-timepicker data-time-type="string" data-time-format="HH:mm:ss" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+     </div>
+         <div class="form-group col-sm-2 col-xs-6">
+           <span class="label label-default">期間</span>
+           <br>
+           <select name="dataperiod" ng-model="range.dataperiod.singleSelect">
+             <option value="0">15分鐘</option>
+             <option value="1">30分鐘</option>
+             <option value="2">1小時</option>
+             <option value="3">12小時</option>
+             <option value="4">1天</option>
+             <option value="5">1周</option>
+         </select>
+         </div>
+
+         <div class="form-group col-sm-5 col-xs-6">
+           <button type="button" class="btn btn-primary btn-with-icon" ng-click="lastpage();"><i class="ion-arrow-left-a"></i>上一頁</button>
+           <button type="button" class="btn btn-default btn-with-icon" ng-disabled="timestamps.length==0" ng-click="nextpage();"><i class="ion-arrow-right-a"></i>下一頁</button>
+           <button type="button" class="btn btn-primary btn-with-icon" ng-click="firstpage();"><i class="icon ion-arrow-up-a"></i>取資料</button>
+           </div>
+     </form>
+
+<!--
+<form class="row form-inline">
+<div class="form-group col-sm-3 col-xs-6">
+  <span class="label label-default">從日期</span>
+  <p class="input-group">
+  <input type="text" class="form-control"  uib-datepicker-popup="{{range.format}}" datepicker-options="range.options" ng-model="range.dtstart" is-open="range.dtstartopened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"/>
+   <span class="input-group-btn">
+    <button type="button" class="btn btn-default form-control" ng-click="dtstartopen()"><i class="glyphicon glyphicon-calendar"></i></button>
+   </span>
+  </p>
+</div>
+<div class="form-group col-sm-2 col-xs-4">
+  <span class="label label-default">從時間</span>
+  <input bs-on-hide="onHide()" type="text" class="form-control" size="8" ng-model="range.timestart"  placeholder="從時間" bs-timepicker data-time-type="string" data-time-format="HH:mm:ss" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+</div>
+  <div class="form-group col-sm-3 col-xs-6">
+    <span class="label label-default">到日期</span>
+    <p class="input-group">
+    <input type="text" class="form-control"  uib-datepicker-popup="{{range.format}}" datepicker-options="range.options" ng-model="range.dtend" is-open="range.dtendopened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"/>
+     <span class="input-group-btn">
+      <button type="button" class="btn btn-default form-control" ng-click="dtendopen()"><i class="glyphicon glyphicon-calendar"></i></button>
+     </span>
+    </p>
+    </div>
+    <div class="form-group col-sm-2 col-xs-4">
+      <span class="label label-default">到時間</span>
+      <input bs-on-hide="onHide()" type="text" class="form-control" size="8" ng-model="range.timeend"  placeholder="到時間" bs-timepicker data-time-type="string" data-time-format="HH:mm:ss" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+    </div>
+
+    <div class="form-group col-sm-2 col-xs-4">
+      <span class="label label-default">期間</span>
+      <label><font color="white">期間</font></label>
+      <select name="dataperiod" ng-model="range.dataperiod.singleSelect">
+        <option value="0">1小時</option>
+        <option value="1">1天</option>
+        <option value="2">1周</option>
+    </select><br>
+
+
+    {{range.dataperiod.singleSelect}}
+      <select id="select" class="form-control" title="Success Select" data-style="btn-success" data-container="body"
+                        selectpicker>
+                        <option>1小時</option>
+                        <option>1天</option>
+                        <option>1周</option>
+                </select>
+
+    </div>
+</form>
+-->
+<!--
+<div class="form-group">
+<ui-select ng-model="range.dataperiod.selected"
+         class="btn-group bootstrap-select form-control"
+         ng-disabled="false"
+         append-to-body="true"
+         search-enabled="false">
+<ui-select-match placeholder="期間">
+  <span> {{$select.range.dataperiod.label}}</span>
+</ui-select-match>
+<ui-select-choices repeat="standardItem in range.standardSelectItems | filter: $select.search">
+  <span ng-bind-html="standardItem.label"></span>
+</ui-select-choices>
+</ui-select>
+</div>
+-->
+
+
+<div ng-repeat="dp in controller.datapoints">
+  <div ba-panel ba-panel-title={{dp.title}} ba-panel-class="with-scroll ">
+      <canvas id="line" class="chart chart-line" chart-data="dp.data" chart-labels="dp.labels"
+            chart-series="dp.series" chart-click="changeData" width=300></canvas>
+  </div>
+</div>
+</div>
+<!--
+<div class="col-md-6" ng-controller="controllerchartCtrl">
+    <div ba-panel ba-panel-title="類比訊號"  ba-panel-class="with-scroll ">
+
+    <div ng-repeat="dp in controller.datapoints">
+           <canvas id="line" class="chart chart-line" chart-data="dp.data" chart-labels="dp.labels"
+       chart-series="dp.series" chart-click="changeData" width=300 ng-if="dp.dptype==2 || dp.dptype==3"></canvas>
+    </div>
+
+    </div>
+</div>
+-->

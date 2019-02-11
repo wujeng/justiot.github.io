@@ -1,0 +1,124 @@
+<div class="horizontal-scroll" ng-if="!canEdit()">
+  <table class="table table-hover" st-table="editableTableData">
+    <thead>
+    <tr class="sortable">
+      <th st-sort="title" style="width:10%">名稱</th>
+      <th st-sort="description" style="width:15%">說明</th>
+      <th st-sort="dptype" style="width:10%">類型</th>
+      <th st-sort="userid" style="width:10%">使用者</th>
+      <th st-sort="controllerid" style="width:10%">控制器</th>
+      <th st-sort="order" st-sort-default="true" style="width:10%">次序</th>
+      <th st-sort="max" style="width:10%">最大值</th>
+      <th st-sort="min" style="width:10%">最小值</th>
+      <th st-sort="units" style="width:5%">單位</th>
+      <th st-sort="active" style="width:10%">啟用</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="datapoint in common.datapoints" class="editable-tr-wrap">
+      <td>{{datapoint.title}}</td>
+      <td>{{datapoint.description}}</td>
+      <td>{{ showDatapointType(datapoint) }}</td>
+      <td>{{ showDatapointUser(datapoint) }}</td>
+      <td>{{ showDatapointController(datapoint) }}</td>
+      <td>{{datapoint.order}}</td>
+      <td>{{datapoint.max || '未設定'}}</td>
+      <td>{{datapoint.min || '未設定'}}</td>
+      <td>{{datapoint.unit || '未設定'}}</td>
+      <td>{{ showActive(datapoint) }}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+
+<div class="add-row-editable-table" ng-if="canEdit()">
+  <button class="btn btn-primary" ng-click="addDatapoint()">新增資料點</button>
+</div>
+<div class="horizontal-scroll" ng-if="canEdit()">
+  <table class="table table-hover" st-table="editableTableData">
+    <thead>
+    <tr class="sortable">
+      <th st-sort="title" style="width:10%">名稱</th>
+      <th st-sort="description" style="width:15%">說明</th>
+      <th st-sort="dptype" style="width:12%">類型</th>
+      <th st-sort="userid" style="width:10%">使用者</th>
+      <th st-sort="controllerid" style="width:10%">控制器</th>
+      <th st-sort="order" st-sort-default="true" style="width:5%">次序</th>
+      <th st-sort="max" style="width:5%">最大值</th>
+      <th st-sort="min" style="width:5%">最小值</th>
+      <th st-sort="units" style="width:5%">單位</th>
+      <th st-sort="active" style="width:5%">啟用</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="datapoint in common.datapoints" class="editable-tr-wrap">
+      <td><span editable-text="datapoint.title" blur="cancel" onaftersave="changeDatapoint($index)">{{datapoint.title}}</span></td>
+      <td><span editable-text="datapoint.description" blur="cancel" onaftersave="changeDatapoint($index)">{{datapoint.description}}</span></td>
+      <td class="select-td">
+          <span editable-select="datapoint.dptype" e-selectpicker
+                e-ng-options="s.id as s.text for s in dptypes" blur="cancel" onaftersave="changeDatapoint($index)">
+            {{ showDatapointType(datapoint) }}
+          </span>
+      </td>
+      <td class="select-td">
+          <span editable-select="datapoint.userid" e-selectpicker
+                e-ng-options="s.id as s.text for s in userarray" blur="cancel" onaftersave="changeDatapoint($index)">
+            {{ showDatapointUser(datapoint) }}
+          </span>
+      </td>
+      <td class="select-td">
+          <span editable-select="datapoint.controllerid" e-selectpicker
+                e-ng-options="s.id as s.text for s in controllerarray" blur="cancel" onaftersave="changeDatapoint($index)">
+            {{ showDatapointController(datapoint) }}
+          </span>
+      </td>
+      <td><span editable-text="datapoint.order" blur="cancel" onaftersave="changeDatapoint($index)">{{datapoint.order}}</span></td>
+<!--
+      <td class="select-td">
+          <span editable-select="datapoint.order" e-selectpicker
+                e-ng-options="s.id as s.text for s in orderarray" blur="cancel" onaftersave="changeDatapoint($index)">
+            {{ datapoint.order }}
+          </span>
+      </td>
+    -->
+      <td><span editable-text="datapoint.max" blur="cancel" onaftersave="changeDatapoint($index)">{{datapoint.max || '未設定'}}</span></td>
+      <td><span editable-text="datapoint.min" blur="cancel" onaftersave="changeDatapoint($index)">{{datapoint.min || '未設定'}}</span></td>
+      <td><span editable-text="datapoint.unit" blur="cancel" onaftersave="changeDatapoint($index)">{{datapoint.unit || '未設定'}}</span></td>
+      <td class="select-td">
+          <span editable-select="datapoint.active" e-selectpicker
+                e-ng-options="g.id as g.text for g in actives" blur="cancel" onaftersave="changeDatapoint($index)">
+            {{ showActive(datapoint) }}
+          </span>
+      </td>
+      <td ng-if="datapoint.changed">
+        <div>
+          <button class="btn btn-primary editable-table-button btn-xs" ng-click="saveDatapoint($index)">儲存</button>
+          <!--
+          <button class="btn btn-danger editable-table-button btn-xs" ng-click="cancel('datapoint', 'datapoint', datapoint, $index)">取消</button>
+        -->
+        </div>
+      </td>
+      <td>
+        <div>
+          <button class="btn btn-primary editable-table-button btn-xs" ng-click="removeDatapoint($index)">刪除</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

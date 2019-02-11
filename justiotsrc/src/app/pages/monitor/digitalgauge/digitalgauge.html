@@ -1,0 +1,15 @@
+   <div ng-if="datapoint.dptype==0 || datapoint.dptype==1">
+
+     <table>
+     <tr><td align="center">{{datapoint.title}}</td></tr>
+     <tr><td align="center">
+      <div  ng-if="datapoint.value==0"><font color=blue>OFF</font></div>
+      <div  ng-if="datapoint.value==1"><font color=red>ON</font></div>
+     </td></tr>
+     <tr><td align="center">
+       <img ng-src="{{datapoint.imageon}}" width="100" ng-if="datapoint.value==1"/>
+       <img ng-src="{{datapoint.imageoff}}" width="100" ng-if="datapoint.value==0"/>
+     </td></tr>
+   </table>
+
+ </div>

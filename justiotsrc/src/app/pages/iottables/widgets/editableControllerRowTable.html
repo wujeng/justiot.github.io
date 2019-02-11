@@ -1,0 +1,102 @@
+<div class="add-row-editable-table">
+  <button class="btn btn-primary" ng-click="addController()" ng-if="canEdit()">新增控制器</button>
+</div>
+<table class="table table-bordered table-hover table-condensed" ng-if="!canEdit()">
+  <tr>
+    <td>辨識碼</td>
+    <td>名稱</td>
+    <td>說明</td>
+    <td>使用者</td>
+    <td>類型</td>
+    <td>啟用</td>
+  </tr>
+  <tr ng-repeat="controller in common.controllers" class="editable-row">
+    <td>
+        {{controller.id}}
+    </td>
+    <td>
+        <span>
+          {{ controller.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ controller.description || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showControllerUser(controller) }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showControllerType(controller) }}
+        </span>
+    </td>
+    <td>
+        <span>
+          {{ showActive(controller) }}
+        </span>
+    </td>
+  </tr>
+</table>
+
+<table class="table table-bordered table-hover table-condensed" ng-if="canEdit()">
+  <tr>
+    <td>辨識碼</td>
+    <td>名稱</td>
+    <td>說明</td>
+    <td>使用者</td>
+    <td>類型</td>
+    <td>啟用</td>
+  </tr>
+  <tr ng-repeat="controller in common.controllers" class="editable-row">
+    <td>
+        {{controller.id}}
+    </td>
+    <td>
+        <span editable-text="controller.title" e-name="title" e-form="cnrowform" e-required>
+          {{ controller.title || '[無]' }}
+        </span>
+    </td>
+    <td>
+        <span editable-text="controller.description" e-name="description" e-form="cnrowform" e-required>
+          {{ controller.description || '[無]' }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="controller.userid" e-name="userid" e-form="cnrowform" e-selectpicker
+              e-ng-options="s.id as s.text for s in userarray">
+          {{ showControllerUser(controller) }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="controller.type" e-name="type" e-form="cnrowform" e-selectpicker
+              e-ng-options="s.id as s.text for s in ctypes">
+          {{ showControllerType(controller) }}
+        </span>
+    </td>
+    <td class="select-td">
+        <span editable-select="controller.active" e-name="active" e-form="cnrowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in actives">
+          {{ showActive(controller) }}
+        </span>
+    </td>
+    <td>
+      <form editable-form name="cnrowform" ng-show="cnrowform.$visible" class="form-buttons form-inline"
+            shown="inserted == controller" onaftersave="saveController($index)">
+        <button type="submit" ng-disabled="cnrowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+          確定
+        </button>
+        <button type="button" ng-disabled="cnrowform.$waiting" ng-click="cancel(cnrowform, 'controller', controller, $index)" class="btn btn-default editable-table-button btn-xs">
+          取消
+        </button>
+      </form>
+      <div class="buttons" ng-show="!cnrowform.$visible">
+        <button class="btn btn-primary editable-table-button btn-xs" ng-click="cnrowform.$show()">修改</button>
+        <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeController($index)">刪除</button>
+      </div>
+    </td>
+  </tr>
+</table>

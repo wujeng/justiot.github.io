@@ -1,0 +1,71 @@
+<div ba-panel ba-panel-title="監控版面配置" ba-panel-class="with-scroll" ng-if="common.layoutcommand=='uploadImage'">
+
+<input type="file" ng-model-instant id="file" multiple onchange="angular.element(this).scope().setFiles(this)" name="file"/>
+
+<div class="progress">
+<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="image.progress" aria-valuemin="0" aria-valuemax="100"
+   style="width: {{image.progress}}%">
+  {{image.progress}}
+</div>
+</div>
+
+<div class="row">
+<div>
+<div ba-panel ba-panel-title="圖片表列" ba-panel-class="with-scroll">
+  <div include-with-scope="app/pages/layout/editableImageRowTable.html"></div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div>
+<div ba-panel ba-panel-title="標籤表列" ba-panel-class="with-scroll">
+  <div include-with-scope="app/pages/layout/editableLabelRowTable.html"></div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div>
+<div ba-panel ba-panel-title="資料點顯示" ba-panel-class="with-scroll">
+
+<div class="checkbox-demo-row">
+  <div class="input-demo checkbox-demo row">
+    <div class="col-md-4" ng-repeat="datapoint in datapoints">
+      <label class="checkbox-inline custom-checkbox nowrap">
+        <input type="checkbox" ng-model="labels[datapoint.id]" ng-click="setLayoutLabel(datapoint.id)">
+        <span>{{datapoint.title}}</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+
+<div  id="dragcontainer" ng-style="{'background-image':'url('+layout.background.url+')', 'width': layout.background.width+'px', 'height': layout.background.height+'px', 'position': 'relative'}"  class="resize-container">
+<image-Move layoutimage='layoutimage' ng-repeat="layoutimage in layout.layoutimages" ng-if="showImage(layoutimage)"></image-Move>
+<iolabelmove layoutlabel='layoutlabel' ng-if="layoutlabel.type==0 || layoutlabel.type==1"  ng-repeat="layoutlabel in layout.layoutlabels"></iolabelmove>
+
+<leddigitmove layoutlabel='layoutlabel' ng-if="layoutlabel.type==2" ng-repeat="layoutlabel in layout.layoutlabels"></leddigitmove>
+<valuemove layoutlabel='layoutlabel' ng-if="layoutlabel.type==3" ng-repeat="layoutlabel in layout.layoutlabels"></valuemove>
+<datatimemove layout='layout'></datatimemove>
+<fullscreen layout='layout'></fullscreen>
+<offline controller='controller' ng-repeat="controller in layoutcontrollers"></offline>
+</div>
+<!--
+<div id="{{layout.id}}" ng-style="{'background-image':'url('+layout.background.url+')', 'width': layout.background.width+'px', 'height': layout.background.height+'px', 'position': 'relative'}" ng-if="common.layoutcommand=='none'">
+<img ng-repeat="layoutimage in layout.layoutimages" ng-if="layoutimage.datapointid!='0'" ng-src="{{layoutimage.url}}" width="{{layoutimage.width}}" height="{{layoutimage.height}}" STYLE="position:absolute; TOP:{{layoutimage.y}}px; LEFT:{{layoutimage.x}}px;"></img>
+<iolabel layoutlabel='layoutlabel' ng-if="layoutlabel.type==0 || layoutlabel.type==1" ng-repeat="layoutlabel in layout.layoutlabels" STYLE="position:absolute; TOP:{{layoutlabel.y}}px; LEFT:{{layoutlabel.x}}px;"></iolabel>
+<leddigit layoutlabel='layoutlabel' ng-if="layoutlabel.type==2" ng-repeat="layoutlabel in layout.layoutlabels" STYLE="position:absolute; TOP:{{layoutlabel.y}}px; LEFT:{{layoutlabel.x}}px;"></leddigit>
+<value layoutlabel='layoutlabel' ng-if="layoutlabel.type==3" ng-repeat="layoutlabel in layout.layoutlabels" STYLE="position:absolute; TOP:{{layoutlabel.y}}px; LEFT:{{layoutlabel.x}}px;"></value>
+
+<datatime layout='layout' STYLE="position:absolute; TOP:{{layout.y}}px; LEFT:{{layout.x}}px;"></datatime>
+<fullscreen layout='layout' STYLE="position:absolute; TOP:{{layout.fsy}}px; LEFT:{{layout.fsx}}px;"></fullscreen>
+</div>
+-->
