@@ -25,12 +25,12 @@ angular.module('JustIOT', [
   };
 })
 .constant("GUEST", {
-      "email": "guest@nfu.edu.tw",
-      "password": "miketommy"
+      "email": "xxxxxxxxx",
+      "password": "xxxxxxxxxxx"
   })
 .constant("myServer", {
-      "host": "120.113.76.84",
-      "port": 3000
+      "host": "xxx.xxx.xxx.xxx",
+      "port": xxxx
   })
 .config(appConfig);
 
