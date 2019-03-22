@@ -1,5 +1,6 @@
-# JustIoT Internet of Things based on the Firebase Real-time Database
-# Cloud Supervisory Control System Based on JustIoT
+JustIoT Internet of Things based on the Firebase Real-time Database
+
+Cloud Supervisory Control System Based on JustIoT
 
 ![justiot](justiot0.jpg "Structure of JustIoT")
 ![house](justiot1.jpg "Smart house application")
